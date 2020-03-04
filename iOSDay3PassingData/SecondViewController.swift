@@ -14,13 +14,32 @@ class SecondViewController: UIViewController {
     
     var name: String?
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        
+        //self.navigationController?.hidesBarsOnTap = true
+        
+        //self.navigationController?.hidesBarsOnSwipe = true
+        //self.navigationController?.navigationBar.isHidden = true
+        
+        //hide back button from navigation bar
+        self.navigationItem.hidesBackButton = true
+        self.addCloseButton()
+        
+        //self.navigationController?.popToRootViewController(animated:true)
+        
+        //self.navigationController?.popToViewController (animated: true)
+        
+        //let bvc = self.navigationController?.
+        
+        //self.navigationController?.popToViewController(, animated: l)
         
         if let nm = name
         {
             self.lblWelcome.text = "Welcome, \(nm)"
-            
+            //set Title Navigation Bar
+            self.navigationItem.title = "Welcome, \(nm)"
         }else
         {
             self.lblWelcome.text = "No Name Send from First VC"
@@ -29,7 +48,17 @@ class SecondViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    private func addCloseButton()
+    {
+        let btnClose = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(self.goBack))
+        
+        self.navigationItem.rightBarButtonItem = btnClose
+    }
+    
+    @objc func goBack()
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
     /*
     // MARK: - Navigation
 
